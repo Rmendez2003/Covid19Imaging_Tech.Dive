@@ -1,3 +1,4 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -5,8 +6,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var mongoose = require('mongoose')
+
+// mongoose.set('strickQuery', true);
+
+const PORT = process.env.PORT || 5000;
+
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 
 var app = express();
 
@@ -35,5 +42,17 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// Connect to the database.
+
+mongoose.connect(process.env.MONGO_URI)
+.then( () => {
+  app.listen(PORT, () => {
+    console.log(`App listening on port ${PORT} !!!`)
+  })
+})
+.catch( (error) => {
+  console.log(error)
+})
 
 module.exports = app;
