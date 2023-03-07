@@ -68,7 +68,7 @@ const updateOneExam = async (req, res) => {
   })
 
   if (!exam) {
-    return res.status(404).json({error: 'This exam does not existe!'})
+    return res.status(404).json({error: 'This exam does not existe.'})
   }
 
   res.status(200).json(exam)

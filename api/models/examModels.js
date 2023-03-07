@@ -12,7 +12,7 @@ LATEST_WEIGHT: {type: Number},
 png_filename: {type: String},
 exam_Id: {type: Number},
 ICU_Admit: {type: String},
-_ICU_admits: {type: Number},
+Number_ICU_admits: {type: Number},
 MORTALITY: {type: String},
 _id: {type: Number}
 });
